@@ -1,0 +1,5 @@
+C:\TestAnglr\Lib\bin\Debug\Lib.pdb
+C:\TestAnglr\Lib\obj\Debug\Lib.pdb
+C:\TestAnglr\Lib\bin\Debug\Lib.exe.config
+C:\TestAnglr\Lib\bin\Debug\Lib.exe
+C:\TestAnglr\Lib\obj\Debug\Lib.exe

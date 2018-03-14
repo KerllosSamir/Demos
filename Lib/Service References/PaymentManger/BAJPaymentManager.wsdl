@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:tns="http://olp.baj.com.sa/bajpaymentmanagement/service/bajpaymentmanager/intf/1" xmlns:ent2="http://enterprise.olp.baj.com.sa/Infrastructure/BAJEnterpriseContext" xmlns:wsp1_2="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns="http://schemas.xmlsoap.org/wsdl/" name="BAJPaymentManager" targetNamespace="http://olp.baj.com.sa/bajpaymentmanagement/service/bajpaymentmanager/intf/1" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <documentation>
+		BAJ Payment manager service definition is used to perform the functionalities related with 
+		Payment Initiation and Confirmation. This includes
+		1. Initiation of the Payment Process
+		2. Payment confirmation to the merchant
+	</documentation>
+  <wsdl:import namespace="http://enterprise.olp.baj.com.sa/Infrastructure/BAJEnterpriseContext" location="BAJEnterpriseContext.wsdl" />
+  <wsdl:types>
+    <xsd:schema>
+      <xsd:import schemaLocation="BAJPaymentManager.xsd" namespace="http://olp.baj.com.sa/bajpaymentmanagement/service/bajpaymentmanager/intf/1" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="InitiatePaymentDetails">
+    <wsdl:part name="parameters" element="tns:InitiatePaymentDetails" />
+  </wsdl:message>
+  <wsdl:message name="InitiatePaymentDetailsResponse">
+    <wsdl:part name="parameters" element="tns:InitiatePaymentDetailsResponse" />
+  </wsdl:message>
+  <wsdl:message name="Fault">
+    <wsdl:part name="fault" element="tns:Fault" />
+  </wsdl:message>
+  <wsdl:message name="ConfirmPaymentDetails">
+    <wsdl:part name="parameters" element="tns:ConfirmPaymentDetails" />
+  </wsdl:message>
+  <wsdl:message name="ConfirmPaymentDetailsResponse">
+    <wsdl:part name="parameters" element="tns:ConfirmPaymentDetailsResponse" />
+  </wsdl:message>
+  <wsdl:portType name="BAJPaymentManager">
+    <wsdl:operation name="InitiatePaymentDetails">
+      <documentation>
+		Initiate Payment Details - Operation name, input wrapper, output wrapper and fault wrapper.
+		</documentation>
+      <wsdl:input wsam:Action="InitiatePaymentDetails" message="tns:InitiatePaymentDetails" />
+      <wsdl:output wsam:Action="http://olp.baj.com.sa/bajpaymentmanagement/service/bajpaymentmanager/intf/1/BAJPaymentManager/InitiatePaymentDetailsResponse" message="tns:InitiatePaymentDetailsResponse" />
+      <wsdl:fault wsam:Action="http://olp.baj.com.sa/bajpaymentmanagement/service/bajpaymentmanager/intf/1/BAJPaymentManager/InitiatePaymentDetails/Fault/Fault" name="Fault" message="tns:Fault" />
+    </wsdl:operation>
+    <wsdl:operation name="ConfirmPaymentDetails">
+      <documentation>
+		Confirm Payment Details - Operation name, input wrapper, output wrapper and fault wrapper.
+		</documentation>
+      <wsdl:input wsam:Action="ConfirmPaymentDetails" message="tns:ConfirmPaymentDetails" />
+      <wsdl:output wsam:Action="http://olp.baj.com.sa/bajpaymentmanagement/service/bajpaymentmanager/intf/1/BAJPaymentManager/ConfirmPaymentDetailsResponse" message="tns:ConfirmPaymentDetailsResponse" />
+      <wsdl:fault wsam:Action="http://olp.baj.com.sa/bajpaymentmanagement/service/bajpaymentmanager/intf/1/BAJPaymentManager/ConfirmPaymentDetails/Fault/Fault" name="Fault" message="tns:Fault" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BAJPaymentManagerBinding" type="tns:BAJPaymentManager">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="InitiatePaymentDetails">
+      <soap:operation soapAction="InitiatePaymentDetails" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="ent2:BAJEnterpriseContextHeader" part="enterpriseHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="Fault">
+        <soap:fault use="literal" name="Fault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="ConfirmPaymentDetails">
+      <soap:operation soapAction="ConfirmPaymentDetails" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="ent2:BAJEnterpriseContextHeader" part="enterpriseHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="Fault">
+        <soap:fault use="literal" name="Fault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="BAJPaymentManager">
+    <documentation>
+		URL where the service is hosted. (To be updated with production server URL)
+	</documentation>
+    <wsdl:port name="BAJPaymentManager" binding="tns:BAJPaymentManagerBinding">
+      <soap:address location="https://servername:port/BAJPaymentManagement/01_00/BAJPaymentManager" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

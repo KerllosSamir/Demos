@@ -1,0 +1,352 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://olp.baj.com.sa/bajpaymentmanagement/service/bajpaymentmanager/intf/1" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://olp.baj.com.sa/bajpaymentmanagement/service/bajpaymentmanager/intf/1" version="1.0">
+  <xsd:annotation>
+    <xsd:documentation>
+			This schema defines the data transfer objects used
+			by the BAJ PaymentManager service.
+		</xsd:documentation>
+  </xsd:annotation>
+  <xsd:annotation>
+    <xsd:documentation>
+			Below element tag shows the @RequestWrapper and
+			@ResponseWrapper name and type. The default value of the localName is
+			the operationName for Request wrapper and operationName appended by
+			Response for Response wrapper.
+		</xsd:documentation>
+  </xsd:annotation>
+  <xsd:element name="Fault" type="tns:Fault">
+    <xsd:annotation>
+      <xsd:documentation>
+				BAJPaymentManagement Fault element wrapper.
+			</xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:element name="ConfirmPaymentDetails" type="tns:ConfirmPaymentDetails">
+    <xsd:annotation>
+      <xsd:documentation>
+				ConfirmPaymentDetails request jax-ws element wrapper.
+			</xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:element name="ConfirmPaymentDetailsResponse" type="tns:ConfirmPaymentDetailsResponse">
+    <xsd:annotation>
+      <xsd:documentation>
+				ConfirmPaymentDetails response jax-ws element wrapper.
+			</xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:element name="InitiatePaymentDetails" type="tns:InitiatePaymentDetails">
+    <xsd:annotation>
+      <xsd:documentation>
+				InitiatePaymentDetails request jax-ws element wrapper.
+			</xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:element name="InitiatePaymentDetailsResponse" type="tns:InitiatePaymentDetailsResponse">
+    <xsd:annotation>
+      <xsd:documentation>
+				InitiatePaymentDetails response jax-ws element wrapper.
+			</xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:complexType name="InitiatePaymentDetails">
+    <xsd:annotation>
+      <xsd:documentation>
+				InitiatePaymentDetails request wrapper.
+			</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element minOccurs="1" maxOccurs="1" name="InitiatePaymentDetailsRequest" type="tns:InitiatePaymentDetailsRequest" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="InitiatePaymentDetailsRequest">
+    <xsd:sequence>
+      <xsd:element minOccurs="1" maxOccurs="1" name="transactionAmount" type="xsd:double">
+        <xsd:annotation>
+          <xsd:documentation>
+						The transaction amount
+					</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="1" maxOccurs="1" name="olpIdAlias" type="xsd:string">
+        <xsd:annotation>
+          <xsd:documentation>
+						Alias OLP ID of the Consumer.
+					</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="1" maxOccurs="1" name="merchantRefNum" type="xsd:string">
+        <xsd:annotation>
+          <xsd:documentation>
+						The Merchant Reference Number.
+					</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="1" maxOccurs="unbounded" name="merchants" type="tns:Merchant">
+        <xsd:annotation>
+          <xsd:documentation>
+						The list of merchants
+					</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="1" maxOccurs="1" name="merchantId" type="xsd:long">
+        <xsd:annotation>
+          <xsd:documentation>
+						The ID of the Merchant.
+					</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="Merchant">
+    <xsd:sequence>
+      <xsd:element minOccurs="1" maxOccurs="1" name="merchantId" type="xsd:long">
+        <xsd:annotation>
+          <xsd:documentation>
+						The ID of the Merchant.
+					</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="1" maxOccurs="1" name="merchantRefNum" type="xsd:string">
+        <xsd:annotation>
+          <xsd:documentation>
+						The Merchant Reference Number.
+					</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="1" maxOccurs="1" name="paymentAmount" type="xsd:double">
+        <xsd:annotation>
+          <xsd:documentation>
+						The payment amount.
+					</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="1" maxOccurs="1" name="paymentCurrency" type="xsd:string">
+        <xsd:annotation>
+          <xsd:documentation>
+						The currency in which the payment is made.
+					</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="1" maxOccurs="1" name="merchantType" type="xsd:int">
+        <xsd:annotation>
+          <xsd:documentation>
+						The Merchnat type:
+						1.Primary
+						2.Secondary
+					</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="InitiatePaymentDetailsResponse">
+    <xsd:annotation>
+      <xsd:documentation>
+				InitiatePaymentDetails response wrapper.
+			</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element minOccurs="1" maxOccurs="1" name="InitiatePaymentDetailsReply" type="tns:InitiatePaymentDetailsReply" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="InitiatePaymentDetailsReply">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" maxOccurs="1" name="initiatePaymentTransactionDetails" type="tns:InitiatePaymentTransactionDetails">
+        <xsd:annotation>
+          <xsd:documentation>
+						The initiate Payment Transaction details
+						Details.
+					</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="1" maxOccurs="1" name="responseCode" type="xsd:string">
+        <xsd:annotation>
+          <xsd:documentation>
+						responseCode :
+						00.Success
+						01.Failure
+					</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="bankBusinessException" type="tns:BankBusinessException">
+        <xsd:annotation>
+          <xsd:documentation>
+						The Business Exception Details.
+					</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="InitiatePaymentTransactionDetails">
+    <xsd:sequence>
+      <xsd:element minOccurs="1" maxOccurs="1" name="abRefNum" type="xsd:string">
+        <xsd:annotation>
+          <xsd:documentation>
+						The Acquiring bank Reference No.
+					</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="1" maxOccurs="1" name="merchantRefNum" type="xsd:string">
+        <xsd:annotation>
+          <xsd:documentation>
+						The Merchant Reference No.
+					</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="1" maxOccurs="1" name="ibURL" type="xsd:string">
+        <xsd:annotation>
+          <xsd:documentation>
+						The URL of the Issuing Bank.
+					</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="BankBusinessException">
+    <xsd:sequence>
+      <xsd:element minOccurs="1" maxOccurs="1" name="errorCode" type="xsd:string">
+        <xsd:annotation>
+          <xsd:documentation>
+						The Error Code of the Business Exception.
+					</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="1" maxOccurs="1" name="errorMessage" type="xsd:string">
+        <xsd:annotation>
+          <xsd:documentation>
+						The Error Message of the Business Exception.
+					</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="ConfirmPaymentDetails">
+    <xsd:annotation>
+      <xsd:documentation>
+				ConfirmPaymentDetails Request Wrapper.
+			</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element minOccurs="1" maxOccurs="1" name="ConfirmPaymentDetailsRequest" type="tns:ConfirmPaymentDetailsRequest" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="ConfirmPaymentDetailsRequest">
+    <xsd:sequence>
+      <xsd:element minOccurs="1" maxOccurs="1" name="transactionIdEnc" type="xsd:string">
+        <xsd:annotation>
+          <xsd:documentation>
+						The Encrypted unique Transaction ID.
+					</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="1" maxOccurs="1" name="merchantId" type="xsd:long">
+        <xsd:annotation>
+          <xsd:documentation>
+						The Unique ID of the Merchant.
+					</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="1" maxOccurs="1" name="merchantRefNum" type="xsd:string">
+        <xsd:annotation>
+          <xsd:documentation>
+						The Merchant Reference Number.
+					</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="ConfirmPaymentDetailsResponse">
+    <xsd:annotation>
+      <xsd:documentation>
+				ConfirmPaymentDetails Response Wrapper.
+			</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element minOccurs="1" maxOccurs="1" name="ConfirmPaymentDetailsReply" type="tns:ConfirmPaymentDetailsReply" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="ConfirmPaymentDetailsReply">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" maxOccurs="1" name="ConfirmPaymentTransactionDetails" type="tns:ConfirmPaymentTransactionDetails">
+        <xsd:annotation>
+          <xsd:documentation>
+						The ConfirmaPaymentDetails
+					</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="1" maxOccurs="1" name="responseCode" type="xsd:string">
+        <xsd:annotation>
+          <xsd:documentation>
+						responseCode :
+						00.Success
+						01.Failure
+					</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="bankBusinessException" type="tns:BankBusinessException">
+        <xsd:annotation>
+          <xsd:documentation>
+						The Business Exception.
+					</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="ConfirmPaymentTransactionDetails">
+    <xsd:sequence>
+      <xsd:element minOccurs="1" maxOccurs="1" name="abRefNum" type="xsd:string">
+        <xsd:annotation>
+          <xsd:documentation>
+						The Acquiring bank Reference Number.
+					</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="1" maxOccurs="1" name="merchantRefNum" type="xsd:string">
+        <xsd:annotation>
+          <xsd:documentation>
+						The Merchant Reference Number.
+					</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="1" maxOccurs="1" name="paymentStatus" type="xsd:int">
+        <xsd:annotation>
+          <xsd:documentation>
+						The Status of the Payment.
+					</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="1" maxOccurs="1" name="transactionId" type="xsd:string">
+        <xsd:annotation>
+          <xsd:documentation>
+						The Unique ID for the Transaction.
+					</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="Fault">
+    <xsd:sequence>
+      <xsd:element minOccurs="1" maxOccurs="1" name="faultCode" type="xsd:string">
+        <xsd:annotation>
+          <xsd:documentation>
+						Fault Type of the fault occured
+					</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="1" maxOccurs="1" name="faultString" type="xsd:string">
+        <xsd:annotation>
+          <xsd:documentation>
+						Errormessage of the fault occured
+					</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="1" maxOccurs="1" name="timeStamp" type="xsd:dateTime">
+        <xsd:annotation>
+          <xsd:documentation>
+						Time when the fault occured
+					</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+</xs:schema>

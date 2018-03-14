@@ -1,0 +1,157 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+<script src="~/Scripts/angular.js"></script>
+<script src="~/Scripts/AngularCode.js"></script>
+<script src="~/Scripts/dirPagination.js"></script>
+<style>
+    .btn-space {
+        margin-left: -5%;
+        background-color: cornflowerblue;
+        font-size: large;
+    }
+</style>
+<h2>Index</h2>
+<a href='http://deals.souq.com/eg-ar/?phgid=1100l3ozn&pubref=||||&country=eg&lang=ar&utm_source=affiliate_hub&utm_medium=cpt&utm_content=affiliate&utm_campaign=100l2&u_type=2&u_c=300x250&u_fmt=banner&u_a=1011l21846&u_as=' target='_blank'><img src='http://affiliate-tools.s3.amazonaws.com/eg/dod/ar/300x250/img0000209.jpg' height='250' width='300'></a>
+
+<script type="text/javascript">var url = "https://affiliates.souq.com/api/widget?phgid=1100l3ozn&pubref=mobile||||&country=eg&lang=ar&category=33&utm_source=affiliate_hub&utm_medium=cpt&utm_content=affiliate&utm_campaign=100l2&u_type=carousel&u_c=300x250&u_fmt=carousel&u_a=1011l21846&u_as="; var width = "300"; var height = "250"; createframe(url, width, height); function createframe(UrlToIframe, width, height) { var _body = document.getElementsByTagName('body')[0]; var _iframe = document.createElement('iframe'); _iframe.src = UrlToIframe; _iframe.width = "300"; _iframe.height = "250"; _iframe.marginHeight = "0"; _iframe.marginWidth = "0"; _iframe.frameBorder = "0"; _iframe.scrolling = "no"; _body.appendChild(_iframe); }</script>
+
+<form ng-app="myApp" name="myForm" novalidate>
+    <div>
+        <div ng-controller="myCtrl" ng-init="getData(1);" class="divList">
+            <p class="divHead">List of Employee</p>
+            <table cellpadding="12" class="table table-bordered table-hover">
+                <tr>
+                    <td>
+                        <b>ID</b>
+                    </td>
+                    <td>
+                        <b>Name</b>
+                    </td>
+                    <td>
+                        <b>City</b>
+                    </td>
+                    <td>
+                        <b>Age</b>
+                    </td>
+                    <td>
+                        <b>Actions</b>
+                    </td>
+                </tr>
+                <tr ng-repeat="Emp in employees">
+                    <td>
+                        {{Emp.Emp_Id}}
+                    </td>
+                    <td>
+                        {{Emp.Emp_Name}}
+                    </td>
+                    <td>
+                        {{Emp.Emp_City}}
+                    </td>
+                    <td>
+                        {{Emp.Emp_Age}}
+                    </td>
+                    <td>
+                        <input type="button" class="btn btn-warning" value="Update" ng-click="UpdateEmp(Emp)" />
+                        <input type="button" class="btn btn-danger" value="Delete" ng-click="DeleteEmp(Emp)" />
+                    </td>
+                </tr>
+            </table>
+
+            <table cellpadding="12" class="table table-bordered table-hover">
+                <tr>
+                    <td>
+                        <b>ID</b>
+                    </td>
+                    <td>
+                        <b>Name</b>
+                    </td>
+                    <td>
+                        <b>City</b>
+                    </td>
+                    <td>
+                        <b>Age</b>
+                    </td>
+                    <td>
+                        <b>Actions</b>
+                    </td>
+                </tr>
+                <tbody>
+                    <tr ng-show="employees.length <= 0"><td colspan="5" style="text-align:center;">Loading new data!!</td></tr>
+                    <tr dir-paginate="Emp in employees|itemsPerPage:itemsPerPage" total-items="total_count">
+                        <td>
+                            {{Emp.Emp_Id}}
+                        </td>
+                        <td>
+                            {{Emp.Emp_Name}}
+                        </td>
+                        <td>
+                            {{Emp.Emp_City}}
+                        </td>
+                        <td>
+                            {{Emp.Emp_Age}}
+                        </td>
+                        <td>
+                            <input type="button" class="btn btn-warning" value="Update" ng-click="UpdateEmp(Emp)" />
+                            <input type="button" class="btn btn-danger" value="Delete" ng-click="DeleteEmp(Emp)" />
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <dir-pagination-controls max-size="8"
+                                     direction-links="true"
+                                     boundary-links="true"
+                                     on-page-change="getData(newPageNumber)">
+            </dir-pagination-controls>
+
+
+
+            <div class="form-horizontal" role="form">
+                <div class="container">
+                    <div class="row">
+                        <h2>
+                            <span id="spn">Add New Employee</span>
+                        </h2>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6 col-lg-4">
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Name:</label>
+                                <div class="col-md-8">
+                                    <input type="text" class="form-control" placeholder="EmpName" ng-model="EmpName" name="EmpName" data-ng-disabled="false" ng-minlength="4">
+                                    <span style="color:red" ng-show="myForm.EmpName.$dirty && myForm.EmpName.$invalid">
+                                        Your Name Should Contain at least 3 Characters
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-4">
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">City:</label>
+                                <div class="col-md-8">
+                                    <input type="text" class="form-control" placeholder="City" ng-model="EmpCity">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-4">
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Age:</label>
+                                <div class="col-md-8">
+                                    <input type="text" class="form-control" placeholder="Age" ng-model="EmpAge">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6 col-lg-4">
+                            <input type="button" id="btnSave" class="form-control btn-space" value="Submit" ng-click="InsertData()" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @Html.Hidden("EmpID_")
+
+    </div>
+</form>
+

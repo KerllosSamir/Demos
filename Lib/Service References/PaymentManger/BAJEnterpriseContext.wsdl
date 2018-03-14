@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:s2="http://enterprise.olp.baj.com.sa/Infrastructure/BAJEnterpriseContext" targetNamespace="http://enterprise.olp.baj.com.sa/Infrastructure/BAJEnterpriseContext" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://enterprise.olp.baj.com.sa/Infrastructure/BAJEnterpriseContext">
+      <xsd:include schemaLocation="BAJEnterpriseContext.xsd" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="BAJEnterpriseContextHeader">
+    <wsdl:part name="enterpriseHeader" element="s2:enterpriseContext" />
+  </wsdl:message>
+</wsdl:definitions>
